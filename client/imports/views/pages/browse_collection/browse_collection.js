@@ -497,20 +497,20 @@ Template.browseCollection.onRendered(function () {
 Template.browseCollection.events({
     'click #btnSaveFindOne': function (e) {
         e.preventDefault();
-        saveEditor();
+        Helper.warnDemoApp();
     },
 
     'click #btnDelFindOne': function (e) {
         e.preventDefault();
-        deleteDocument();
+        Helper.warnDemoApp();
     },
 
     'click #btnExportAsCSV'(){
-        Template.find.executeQuery(null, 'CSV');
+        Helper.warnDemoApp();
     },
 
     'click #btnExportAsJSON'(){
-        Template.find.executeQuery(null, 'JSON');
+        Helper.warnDemoApp();
     },
 
     'click #btnShowQueryHistories' () {

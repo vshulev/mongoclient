@@ -45,49 +45,8 @@ Template.aggregatePipeline.onRendered(function () {
 });
 
 Template.aggregatePipeline.events({
-    'click #btnExecuteAggregatePipeline' (e) {
-        e.preventDefault();
-
-        var selectedCollection = $("#cmbCollections").chosen().val();
-        var stages = $('#stages').find('li');
-        if (!selectedCollection) {
-            toastr.warning('Please select a collection first !');
-            return;
-        }
-
-        if (stages.length == 0) {
-            toastr.warning('At least one stage is required !');
-            return;
-        }
-
-
-        var l = Ladda.create(document.querySelector('#btnExecuteAggregatePipeline'));
-        l.start();
-
-        var pipeline;
-        try {
-            pipeline = createPipeline(stages);
-        }
-        catch (e) {
-            toastr.error('One of the stages has error: ' + e);
-            Ladda.stopAll();
-            return;
-        }
-
-
-        Meteor.call("aggregate", selectedCollection, pipeline, function (err, result) {
-                if (err || result.error) {
-                    Helper.showMeteorFuncError(err, result, "Couldn't execute ");
-                }
-                else {
-                    setResult(result.result);
-                    $('#aggregateResultModal').modal('show');
-                }
-
-                Ladda.stopAll();
-            }
-        );
-
+    'click #btnExecuteAggregatePipeline' () {
+        Helper.warnDemoApp();
     },
 
     'change #cmbStageQueries'(e) {

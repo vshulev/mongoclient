@@ -1,6 +1,7 @@
 import {Template} from 'meteor/templating';
 import {Meteor} from 'meteor/meteor';
 import {Settings} from '/lib/imports/collections/settings';
+import Helper from '/client/imports/helper';
 
 import './settings.html';
 
@@ -22,15 +23,7 @@ Template.settings.onRendered(function () {
 Template.settings.events({
     'click #btnSaveSettings' (e) {
         e.preventDefault();
-
-        var laddaButton = Ladda.create(document.querySelector('#btnSaveSettings'));
-        laddaButton.start();
-
-        Meteor.call('updateSettings', getSettingsFromForm());
-        toastr.success('Successfuly saved !');
-
-
-        Ladda.stopAll();
+        Helper.warnDemoApp();
     }
 });
 

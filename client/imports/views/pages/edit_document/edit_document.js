@@ -40,16 +40,7 @@ Template.editDocument.onRendered(function () {
 Template.editDocument.events({
     'click #btnInsertDocument'  (e) {
         e.preventDefault();
-
-        if (!$('#cmbCollections').find(":selected").text()) {
-            toastr.warning('Please select a collection first !');
-            Ladda.stopAll();
-            return;
-        }
-
-        Session.set(Helper.strSessionEasyEditID, undefined);
-        initializeResultArea('{}');
-        $('#btnDeleteDocument').prop('disabled', true);
+        Helper.warnDemoApp();
     },
 
     'click #btnFetchDocument' (e) {
@@ -59,38 +50,12 @@ Template.editDocument.events({
 
     'click #btnSaveDocument'  (e) {
         e.preventDefault();
-
-        var text = Session.get(Helper.strSessionEasyEditID) ? 'This document will be overwritten, are you sure ?' : 'This document will be inserted, are you sure ?';
-        swal({
-            title: "Are you sure ?",
-            text: text,
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes!",
-            cancelButtonText: "No"
-        }, function (isConfirm) {
-            if (isConfirm) {
-                saveDocument();
-            }
-        });
+        Helper.warnDemoApp();
     },
 
     'click #btnDeleteDocument'  (e) {
         e.preventDefault();
-        swal({
-            title: "Are you sure ?",
-            text: "This document will be deleted, are you sure ?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes!",
-            cancelButtonText: "No"
-        }, function (isConfirm) {
-            if (isConfirm) {
-                deleteDocument();
-            }
-        });
+        Helper.warnDemoApp();
     }
 
 });

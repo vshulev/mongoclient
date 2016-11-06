@@ -112,6 +112,10 @@
     };
 
     Helper.prototype = {
+        warnDemoApp(){
+            toastr.info('This feature is not usable in demo application !');
+        },
+
         clearSessions () {
             Object.keys(Session.keys).forEach(function (key) {
                 Session.set(key, undefined);
